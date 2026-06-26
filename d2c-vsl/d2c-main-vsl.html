@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scale Predictably | The Clarity Code Method</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Clean Sans-Serif Font Stack: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #09090b; /* Zinc 950 Deep Matte Black */
+        }
+        .glow-effect {
+            box-shadow: 0 0 50px -12px rgba(37, 99, 235, 0.25);
+        }
+    </style>
+</head>
+<body class="text-zinc-300 antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Top Risk Reversal Banner -->
+    <div class="w-full bg-gradient-to-r from-blue-950 via-zinc-900 to-blue-950 border-b border-blue-900/40 py-2.5 px-4 text-center text-xs sm:text-sm font-semibold text-blue-400 tracking-wide">
+        ⚡ If your core metrics don't improve in 90 days, Month 3 is Free.
+    </div>
+
+    <!-- Sticky Navigation Header -->
+    <header class="border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+            <div class="font-black text-xl tracking-tight text-white flex items-center gap-2">
+                <span class="w-3 h-3 rounded-sm bg-blue-600 transform rotate-45"></span>
+                CLARITY CODE
+            </div>
+            <a href="#diagnosis-form" class="bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-lg transition-all shadow-lg shadow-blue-600/20">
+                Book a Call
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Funnel Container -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+
+        <!-- Hero Section -->
+        <section class="text-center mb-12">
+            <p class="text-xs font-bold uppercase tracking-widest text-blue-500 mb-4 bg-blue-500/10 px-3 py-1 rounded-full inline-block">
+                SYSTEM OPERATIONAL
+            </p>
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] max-w-4xl mx-auto mb-6">
+                A <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">90-day system</span> to grow your monthly revenue using the Clarity Code Method
+            </h1>
+            <p class="text-zinc-400 text-base sm:text-lg max-w-2xl mx-auto mb-8">
+                Without increasing ad spend. If your core metrics don't improve in 90 days, Month 3 is Free.
+            </p>
+            <a href="#diagnosis-form" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm sm:text-base px-8 py-4 rounded-xl transition-all shadow-xl shadow-blue-600/30">
+                Book An Account Diagnosis →
+            </a>
+        </section>
+
+        <!-- Fast Proof/What Founders Say Snippets Block -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto mb-12">
+            <div class="bg-zinc-900/30 border border-zinc-800/50 p-4 rounded-xl flex items-start gap-3">
+                <div class="w-8 h-8 rounded-full bg-zinc-800 flex-shrink-0 flex items-center justify-center font-bold text-xs text-blue-400">AJ</div>
+                <div>
+                    <p class="text-xs text-zinc-400 italic">"They don't act like a typical outside agency. They parsed through our actual unit economics and localized our structural ad fat instantly."</p>
+                    <span class="text-[10px] text-zinc-500 block mt-1 font-semibold">— D2C Founder, Skincare</span>
+                </div>
+            </div>
+            <div class="bg-zinc-900/30 border border-zinc-800/50 p-4 rounded-xl flex items-start gap-3">
+                <div class="w-8 h-8 rounded-full bg-zinc-800 flex-shrink-0 flex items-center justify-center font-bold text-xs text-blue-400">NK</div>
+                <div>
+                    <p class="text-xs text-zinc-400 italic">"The performance dashboard metrics don't lie. Our cost per acquisition dropped exactly as planned over the 90-day architecture run."</p>
+                    <span class="text-[10px] text-zinc-500 block mt-1 font-semibold">— Founder, Apparel Brand</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Big Numbers Section -->
+        <section class="grid grid-cols-3 gap-2 sm:gap-6 max-w-3xl mx-auto text-center border-t border-b border-zinc-900 py-8 mb-16">
+            <div>
+                <div class="text-2xl sm:text-4xl font-black text-white tracking-tight">22500cr+</div>
+                <div class="text-[10px] sm:text-xs text-zinc-500 font-semibold uppercase mt-1 tracking-wider">Ad Spend Analyzed</div>
+            </div>
+            <div class="border-x border-zinc-900">
+                <div class="text-2xl sm:text-4xl font-black text-blue-500 tracking-tight">150+</div>
+                <div class="text-[10px] sm:text-xs text-zinc-500 font-semibold uppercase mt-1 tracking-wider">Brands Scaled</div>
+            </div>
+            <div>
+                <div class="text-2xl sm:text-4xl font-black text-white tracking-tight">30min</div>
+                <div class="text-[10px] sm:text-xs text-zinc-500 font-semibold uppercase mt-1 tracking-wider">Average Diagnosis</div>
+            </div>
+        </section>
+
+        <!-- Video Presentation Box (VSL) -->
+        <section class="relative w-full aspect-video rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl glow-effect mb-16">
+            <iframe 
+                src="https://www.loom.com/embed/YOUR_LOOM_VIDEO_ID_HERE?hide_owner=true&hide_share=true&hide_title=true&hide_embed_top_bar=true" 
+                frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen 
+                class="absolute top-0 left-0 w-full h-full">
+            </iframe>
+        </section>
+
+        <!-- Brand Trust Ticker Block -->
+        <section class="border-t border-b border-zinc-900 py-6 mb-24 text-center">
+            <p class="text-[10px] uppercase font-bold text-zinc-500 tracking-widest mb-4">RECOMMENDED BY OPERATIONAL BRANDS PAST 8-FIGURES</p>
+            <div class="flex flex-wrap items-center justify-center gap-8 sm:gap-14 opacity-30 font-bold text-lg text-white">
+                <span>magicpin</span><span>Bare Anatomy</span><span>Zomato</span><span>Heads Up For Tails</span><span>XYXX</span>
+            </div>
+        </section>
+
+        <!-- Section: "Sound Familiar?" Pain Point Cards -->
+        <section class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Still running ads on a system that's never been diagnosed?</h2>
+                <p class="text-zinc-500 text-sm mt-2">If you identify with any of these statements, your architecture has leaks.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-6 bg-zinc-900/40 border border-zinc-800/80 rounded-xl">
+                    <span class="text-rose-500 text-xl block mb-2">✕</span>
+                    <h4 class="text-white font-semibold mb-1">Your agency is burning cash</h4>
+                    <p class="text-zinc-400 text-sm">Ad spend keeps multiplying but true bottom line net-profit margins stay completely flat or decline.</p>
+                </div>
+                <div class="p-6 bg-zinc-900/40 border border-zinc-800/80 rounded-xl">
+                    <span class="text-rose-500 text-xl block mb-2">✕</span>
+                    <h4 class="text-white font-semibold mb-1">Hit with consistent ad account bans</h4>
+                    <p class="text-zinc-400 text-sm">Lacking modern operational framework architecture to safeguard compliance and tracking reliability.</p>
+                </div>
+                <div class="p-6 bg-zinc-900/40 border border-zinc-800/80 rounded-xl">
+                    <span class="text-rose-500 text-xl block mb-2">✕</span>
+                    <h4 class="text-white font-semibold mb-1">The Performance Rollercoaster</h4>
+                    <p class="text-zinc-400 text-sm">Great revenue attribution data one week, followed immediately by total tracking collapse the next.</p>
+                </div>
+                <div class="p-6 bg-zinc-900/40 border border-zinc-800/80 rounded-xl">
+                    <span class="text-rose-500 text-xl block mb-2">✕</span>
+                    <h4 class="text-white font-semibold mb-1">Internal marketing lack of direction</h4>
+                    <p class="text-zinc-400 text-sm">Team copies generic trends from competitors instead of establishing a fast creative asset testing engine.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- "What Founders Say" Full Testimonials Grid -->
+        <section class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Recommended by the people who know the work.</h2>
+                <p class="text-zinc-500 text-sm mt-2">Real validation from operators implementing the core system architecture.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="p-6 rounded-xl bg-zinc-900/40 border border-zinc-800/80 flex flex-col justify-between">
+                    <p class="text-zinc-400 text-sm italic leading-relaxed mb-6">
+                        "The execution logic completely eliminated our dependence on random scaling trends. We now manage daily creative asset testing with predictable backend margin tracking."
+                    </p>
+                    <div class="flex items-center gap-3 border-t border-zinc-800/60 pt-4">
+                        <div class="w-9 h-9 rounded-full bg-blue-600/20 flex items-center justify-center font-bold text-xs text-blue-400">VS</div>
+                        <div>
+                            <h5 class="text-white text-xs font-bold">Vikram S.</h5>
+                            <span class="text-[10px] text-zinc-500 block">Co-Founder, Wellness Co</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="p-6 rounded-xl bg-zinc-900/40 border border-zinc-800/80 flex flex-col justify-between">
+                    <p class="text-zinc-400 text-sm italic leading-relaxed mb-6">
+                        "Unlike conventional agencies that send empty spreadsheets, this system targets the operational levers directly. Our blended acquisition values stabilized inside 40 days."
+                    </p>
+                    <div class="flex items-center gap-3 border-t border-zinc-800/60 pt-4">
+                        <div class="w-9 h-9 rounded-full bg-blue-600/20 flex items-center justify-center font-bold text-xs text-blue-400">RM</div>
+                        <div>
+                            <h5 class="text-white text-xs font-bold">Rohan M.</h5>
+                            <span class="text-[10px] text-zinc-500 block">Growth Lead, Footwear Digital</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="p-6 rounded-xl bg-zinc-900/40 border border-zinc-800/80 flex flex-col justify-between">
+                    <p class="text-zinc-400 text-sm italic leading-relaxed mb-6">
+                        "We dropped tracking inefficiencies across platforms instantly. If you operate inside the Rs.15L–Rs.60L band, your account infrastructure requires this structural breakdown."
+                    </p>
+                    <div class="flex items-center gap-3 border-t border-zinc-800/60 pt-4">
+                        <div class="w-9 h-9 rounded-full bg-blue-600/20 flex items-center justify-center font-bold text-xs text-blue-400">AM</div>
+                        <div>
+                            <h5 class="text-white text-xs font-bold">Ananya M.</h5>
+                            <span class="text-[10px] text-zinc-500 block">Founder, D2C Lifestyle</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Case Studies & Dashboard Mockups -->
+        <section class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Brands that scaled profitably.</h2>
+            </div>
+            <div class="space-y-6">
+                <!-- Case Study Card 1 -->
+                <div class="p-6 rounded-2xl bg-zinc-900/30 border border-zinc-800/60 flex flex-col md:flex-row gap-6 items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-400 block mb-1">D2C SKINCARE</span>
+                        <h3 class="text-xl font-bold text-white mb-2">ROAS 2.3x → 3.9x</h3>
+                        <p class="text-zinc-400 text-sm max-w-md">Stabilized daily account spend scaling while simultaneously dropping blended cost per acquisition across platforms.</p>
+                    </div>
+                    <div class="w-full md:w-64 bg-zinc-950 p-4 border border-zinc-800 rounded-xl font-mono text-xs text-emerald-400 space-y-1">
+                        <div>[■■■■■■■■■■■■□□□] 74% Growth</div>
+                        <div class="text-zinc-500">Net Profit Margin: +18.4%</div>
+                    </div>
+                </div>
+                <!-- Case Study Card 2 -->
+                <div class="p-6 rounded-2xl bg-zinc-900/30 border border-zinc-800/60 flex flex-col md:flex-row gap-6 items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-400 block mb-1">ECOM APPAREL</span>
+                        <h3 class="text-xl font-bold text-white mb-2">CAC ₹1,086 → ₹655</h3>
+                        <p class="text-zinc-400 text-sm max-w-md">Reconstructed hooks and creative testing layout loops to drop direct conversion costs in target demographics.</p>
+                    </div>
+                    <div class="w-full md:w-64 bg-zinc-950 p-4 border border-zinc-800 rounded-xl font-mono text-xs text-emerald-400 space-y-1">
+                        <div>[■■■■■■■■■■■■■■■] 100% Target Met</div>
+                        <div class="text-zinc-500">Blended CAC: Reduced by 39.6%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: System VS Traditional Agency Comparison Matrix -->
+        <section class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Traditional Agencies vs. Our System</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Agency column -->
+                <div class="p-6 rounded-xl bg-zinc-900/20 border border-zinc-900">
+                    <h3 class="text-zinc-400 font-bold text-base mb-4 uppercase tracking-wider">Traditional Agencies</h3>
+                    <ul class="space-y-3.5 text-sm text-zinc-500">
+                        <li class="flex items-start gap-2"><span>✕</span> Focus heavily on impressions and surface click metrics.</li>
+                        <li class="flex items-start gap-2"><span>✕</span> Slow turnaround time on refreshing fatigued creatives.</li>
+                        <li class="flex items-start gap-2"><span>✕</span> Treat backend infrastructure as your problem.</li>
+                    </ul>
+                </div>
+                <!-- Our System column -->
+                <div class="p-6 rounded-xl bg-blue-950/20 border border-blue-900/60 shadow-lg">
+                    <h3 class="text-blue-400 font-bold text-base mb-4 uppercase tracking-wider">The Clarity Code System</h3>
+                    <ul class="space-y-3.5 text-sm text-zinc-300">
+                        <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">✓</span> Extreme alignment with real operational net cash generation.</li>
+                        <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">✓</span> Systematic validation routines to find creative hooks daily.</li>
+                        <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">✓</span> Complete system optimization, margins and retention integration.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- HIGH-CONVERTING APPLICATION FORM SECTION -->
+        <section id="diagnosis-form" class="scroll-mt-24 pt-12 border-t border-zinc-900 max-w-3xl mx-auto mb-20">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">Apply For Your Account Diagnosis</h2>
+                <p class="text-zinc-400 text-sm sm:text-base max-w-md mx-auto">
+                    Fill out your core metrics below to schedule your custom 1:1 strategy verification check.
+                </p>
+            </div>
+
+            <form action="#" method="POST" class="bg-zinc-900/40 border border-zinc-800 p-6 sm:p-10 rounded-2xl space-y-6 glow-effect">
+                
+                <!-- Full Name & Email Field Array -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">Full Name <span class="text-blue-500">*</span></label>
+                        <input type="text" name="name" required placeholder="John Doe" 
+                               class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">Email Address <span class="text-blue-500">*</span></label>
+                        <input type="email" name="email" required placeholder="john@brand.com" 
+                               class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all">
+                    </div>
+                </div>
+
+                <!-- Phone Number & Brand Website Field Array -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">Phone Number <span class="text-blue-500">*</span></label>
+                        <input type="tel" name="phone" required placeholder="+91 98765 43210" 
+                               class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">Brand Website Link <span class="text-blue-500">*</span></label>
+                        <input type="url" name="website" required placeholder="https://yourbrand.com" 
+                               class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all">
+                    </div>
+                </div>
+
+                <!-- Monthly Spend Dropdown & Monthly Revenue Optional Dropdown -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">Monthly Ad Spend <span class="text-blue-500">*</span></label>
+                        <select name="monthly_spend" required 
+                                class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all appearance-none cursor-pointer">
+                            <option value="" disabled selected hidden>Select spend tier...</option>
+                            <option value="under-1.5L">Under ₹1,50,000 / month</option>
+                            <option value="1.5L-5L">₹1,50,000 – ₹5,00,000 / month</option>
+                            <option value="5L-15L">₹5,00,000 – ₹15,00,000 / month</option>
+                            <option value="15L-50L">₹15,00,000 – ₹50,00,000 / month</option>
+                            <option value="above-50L">Above ₹50,00,000 / month</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">Monthly Revenue <span class="text-zinc-600 text-[10px] lowercase italic">(Optional)</span></label>
+                        <select name="monthly_revenue" 
+                                class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all appearance-none cursor-pointer">
+                            <option value="" selected>Select revenue range...</option>
+                            <option value="under-5L">Under ₹5,00,000 / month</option>
+                            <option value="5L-15L">₹5,00,000 – ₹15,00,000 / month</option>
+                            <option value="15L-60L">₹15,00,000 – ₹60,00,000 / month</option>
+                            <option value="above-60L">Above ₹60,00,000 / month</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- In-house UGC/Creative Team Dropdown Selector -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">Do you have an in-house UGC / Creative Team? <span class="text-blue-500">*</span></label>
+                    <select name="inhouse_creative" required 
+                            class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all appearance-none cursor-pointer">
+                        <option value="" disabled selected hidden>Choose an answer...</option>
+                        <option value="yes">Yes, fully operational in-house team</option>
+                        <option value="no">No, we rely completely on agencies / freelancers</option>
+                        <option value="partial">We handle a bit internally, but need systematic workflows</option>
+                    </select>
+                </div>
+
+                <!-- Submit Button Frame -->
+                <div class="pt-4">
+                    <button type="submit" 
+                            class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm sm:text-base py-4 rounded-xl transition-all shadow-xl shadow-blue-600/20 tracking-wide">
+                        Submit Analysis Application & Proceed →
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- Calendly Container Section -->
+        <section id="booking" class="scroll-mt-24 pt-12 border-t border-zinc-900">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">Select a Date & Time</h2>
+                <p class="text-zinc-500 text-sm">Confidential 1-on-1 performance audit calendar.</p>
+            </div>
+            
+            <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-1 shadow-2xl overflow-hidden min-h-[660px] max-w-3xl mx-auto">
+                <div class="calendly-inline-widget" 
+                     data-url="https://calendly.com/YOUR_CALENDLY_LINK_HERE?background_color=09090b&text_color=ffffff&primary_color=2563eb" 
+                     style="min-width:320px; height:660px;">
+                </div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-900 bg-zinc-950/50 py-8 text-center text-xs text-zinc-600">
+        <p>&copy; 2026 Clarity Code. Built for performance optimization operations.</p>
+    </footer>
+
+</body>
+</html>
