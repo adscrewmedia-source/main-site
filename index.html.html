@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adscrew — Performance Marketing Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('https://cdn.jsdelivr.net/gh/yerlan2/Neue-Montreal@main/NeueMontreal-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('https://cdn.jsdelivr.net/gh/yerlan2/Neue-Montreal@main/NeueMontreal-Medium.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('https://cdn.jsdelivr.net/gh/yerlan2/Neue-Montreal@main/NeueMontreal-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #070707;
+  --bg-card: #0f0f0f;
+  --bg-card2: #141414;
+  --border: #1c1c1c;
+  --border-light: #262626;
+  --text: #EFEFED;
+  --text-muted: #808080;
+  --text-dim: #3a3a3a;
+  --accent: #00FF88;
+  --accent-glow: rgba(0, 255, 136, 0.18);
+  --accent-dim: rgba(0, 255, 136, 0.07);
+  --accent-mid: rgba(0, 255, 136, 0.13);
+  --font-sans: 'Neue Montreal', 'Inter', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(7,7,7,0.94);
+  backdrop-filter: blur(16px);
+}
+.nav-logo {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.nav-logo-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  display: inline-block;
+  margin-left: 2px;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--accent);
+  color: #070707;
+  padding: 10px 22px;
+  border-radius: 2px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: box-shadow 0.2s, opacity 0.2s;
+}
+.nav-cta:hover {
+  box-shadow: 0 0 20px rgba(0,255,136,0.35);
+  opacity: 0.92;
+}
+
+/* ── SECTION LABEL ── */
+section { padding: 96px 48px; }
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 48px 72px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.hero-noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+}
+.hero-glow {
+  position: absolute;
+  bottom: -100px;
+  left: -80px;
+  width: 600px;
+  height: 500px;
+  background: radial-gradient(ellipse at center, rgba(0,255,136,0.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-bg-text {
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  transform: translateY(-52%);
+  font-family: var(--font-sans);
+  font-size: clamp(100px, 16vw, 240px);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.03);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+.hero-headline {
+  font-family: var(--font-sans);
+  font-size: clamp(36px, 5.8vw, 96px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  max-width: 860px;
+  margin-bottom: 32px;
+}
+.hero-headline em {
+  font-style: normal;
+  color: var(--accent);
+  text-shadow: 0 0 40px rgba(0,255,136,0.3);
+}
+.hero-sub {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-muted);
+  max-width: 420px;
+  line-height: 1.75;
+  margin-bottom: 44px;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.btn-primary {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--accent);
+  color: #070707;
+  padding: 13px 28px;
+  border-radius: 2px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: box-shadow 0.2s, opacity 0.2s;
+  display: inline-block;
+}
+.btn-primary:hover {
+  box-shadow: 0 0 28px rgba(0,255,136,0.4);
+  opacity: 0.92;
+}
+.btn-ghost {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: color 0.2s;
+}
+.btn-ghost:hover { color: var(--text); }
+.btn-ghost svg { width: 15px; height: 15px; stroke-width: 1.5; }
+.hero-stats {
+  position: absolute;
+  bottom: 72px;
+  right: 48px;
+  display: flex;
+  gap: 36px;
+}
+.hero-stat { text-align: right; }
+.hero-stat-num {
+  font-family: var(--font-sans);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: var(--text);
+  display: block;
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 5px;
+  display: block;
+  letter-spacing: 0.02em;
+}
+
+/* ── TRUSTED BAR ── */
+#trusted {
+  padding: 28px 48px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.trusted-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.trusted-logos {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+.trusted-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dim);
+  letter-spacing: -0.01em;
+  transition: color 0.2s;
+  cursor: default;
+}
+.trusted-name:hover { color: var(--text-muted); }
+
+/* ── MARQUEE ── */
+#marquee {
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+}
+#marquee::before, #marquee::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+#marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg), transparent);
+}
+#marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+.marquee-track {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.marquee-inner {
+  display: flex;
+  gap: 0;
+  animation: marquee-scroll 28s linear infinite;
+  flex-shrink: 0;
+  min-width: max-content;
+}
+.marquee-inner:hover { animation-play-state: paused; }
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 22px 48px;
+  border-right: 1px solid var(--border);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.marquee-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  box-shadow: 0 0 6px var(--accent);
+}
+.marquee-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: -0.01em;
+}
+
+/* ── NUMBERS ── */
+#numbers {
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+}
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.number-item {
+  padding: 64px 0 64px 40px;
+  border-right: 1px solid var(--border);
+}
+.number-item:first-child { padding-left: 0; }
+.number-item:last-child { border-right: none; }
+.number-big {
+  font-family: var(--font-sans);
+  font-size: clamp(48px, 5.5vw, 68px);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  color: var(--text);
+  line-height: 1;
+  display: block;
+  margin-bottom: 10px;
+}
+.number-big span { color: var(--accent); text-shadow: 0 0 30px rgba(0,255,136,0.4); }
+.number-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  max-width: 200px;
+}
+
+/* ── SERVICES ── */
+#services { border-bottom: 1px solid var(--border); }
+.services-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 60px;
+  align-items: end;
+}
+.services-headline {
+  font-family: var(--font-sans);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+.services-desc {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 380px;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.service-card {
+  background: var(--bg-card);
+  padding: 36px 32px 44px;
+  position: relative;
+  transition: background 0.25s;
+}
+.service-card:hover { background: var(--bg-card2); }
+.service-card:hover .service-num { color: var(--accent); }
+.service-num {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+  transition: color 0.25s;
+}
+.service-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 2px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(0,255,136,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.service-icon svg {
+  width: 16px; height: 16px;
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.service-title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.service-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.service-arrow {
+  position: absolute;
+  bottom: 28px;
+  right: 28px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.service-card:hover .service-arrow { opacity: 1; }
+.service-arrow svg {
+  width: 15px; height: 15px;
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 1.5;
+}
+
+/* ── FOUNDER ── */
+#founder { border-bottom: 1px solid var(--border); }
+.founder-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 72px;
+  align-items: start;
+}
+.founder-sticky { position: sticky; top: 96px; }
+.founder-img-wrap {
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: var(--bg-card);
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.founder-initials {
+  font-family: var(--font-sans);
+  font-size: 80px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: var(--text-dim);
+  line-height: 1;
+}
+.founder-img-hint {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.founder-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.founder-name-tag .fn { font-size: 15px; font-weight: 600; letter-spacing: -0.02em; }
+.founder-name-tag .ft { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.founder-social {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 2px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.founder-social:hover { border-color: var(--accent); color: var(--accent); }
+.founder-content {}
+.founder-quote {
+  font-family: var(--font-sans);
+  font-size: clamp(22px, 2.8vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+  margin-bottom: 28px;
+}
+.founder-quote em { font-style: normal; color: var(--accent); text-shadow: 0 0 30px rgba(0,255,136,0.3); }
+.founder-body {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.founder-divider {
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  margin: 32px 0;
+}
+.founder-creds {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.cred-item {
+  padding: 16px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+.cred-val {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  margin-bottom: 4px;
+}
+.cred-val span { color: var(--accent); }
+.cred-lbl { font-size: 12px; color: var(--text-muted); }
+
+/* ── RESULTS ── */
+#results { border-bottom: 1px solid var(--border); }
+.results-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 52px;
+  align-items: end;
+}
+.results-headline {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.result-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.result-card:hover { border-color: var(--border-light); }
+.result-card-header {
+  padding: 22px 24px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.result-brand { font-size: 14px; font-weight: 600; letter-spacing: -0.02em; }
+.result-industry {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-dim);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+  border-radius: 2px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.result-body { padding: 22px 24px; }
+.result-metric { margin-bottom: 16px; }
+.result-metric:last-child { margin-bottom: 0; }
+.result-metric-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.result-metric-row {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+}
+.result-before {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dim);
+  text-decoration: line-through;
+}
+.result-after {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--text);
+}
+.result-delta {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid rgba(0,255,136,0.1);
+  padding: 2px 7px;
+  border-radius: 2px;
+}
+
+/* ── TESTIMONIALS ── */
+#testimonials { border-bottom: 1px solid var(--border); }
+.testimonials-headline {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  margin-bottom: 48px;
+  max-width: 560px;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.testimonial-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: border-color 0.2s;
+}
+.testimonial-card:hover { border-color: var(--border-light); }
+.testimonial-stars { display: flex; gap: 2px; }
+.star { color: var(--accent); font-size: 12px; text-shadow: 0 0 6px rgba(0,255,136,0.5); }
+.testimonial-text { font-size: 14px; color: var(--text-muted); line-height: 1.75; flex: 1; }
+.testimonial-text strong { color: var(--text); font-weight: 500; }
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.author-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  border: 1px solid var(--border-light);
+}
+.author-name { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; }
+.author-role { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+/* ── CTA ── */
+#cta {
+  padding: 120px 48px;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 700px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(0,255,136,0.07) 0%, transparent 68%);
+  pointer-events: none;
+}
+.cta-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.cta-headline {
+  font-size: clamp(36px, 5.5vw, 72px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.0;
+  margin-bottom: 18px;
+}
+.cta-sub {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 400px;
+  margin: 0 auto 44px;
+  line-height: 1.7;
+}
+.cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.btn-secondary {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 13px 28px;
+  border: 1px solid var(--border-light);
+  border-radius: 2px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 52px 48px 36px;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 56px;
+  margin-bottom: 48px;
+}
+.footer-logo-text {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 12px;
+}
+.footer-logo-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+.footer-tagline {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 230px;
+  margin-bottom: 22px;
+}
+.footer-email {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-email:hover { color: var(--accent); }
+.footer-col-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text); }
+.footer-bottom {
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-copy { font-size: 12px; color: var(--text-dim); }
+.footer-bottom-links { display: flex; gap: 20px; }
+.footer-bottom-links a { font-size: 12px; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+.footer-bottom-links a:hover { color: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">adscrew<span class="nav-logo-dot"></span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+    <li><a href="#founder">About</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Book a Call →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-noise" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-bg-text" aria-hidden="true">SCALE</div>
+  <div class="hero-eyebrow">Performance Marketing Agency</div>
+  <h1 class="hero-headline">
+    We turn your ad<br>spend into <em>real</em><br>revenue.
+  </h1>
+  <p class="hero-sub">
+    Adscrew runs paid media and conversion strategy for B2B brands ready to scale. No vanity metrics — only what moves pipeline.
+  </p>
+  <div class="hero-actions">
+    <a href="#cta" class="btn-primary">Get a Free Audit</a>
+    <a href="#results" class="btn-ghost">
+      See our results
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num">$40M+</span>
+      <span class="hero-stat-label">Ad Spend Managed</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">3.8×</span>
+      <span class="hero-stat-label">Avg. Blended ROAS</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">60+</span>
+      <span class="hero-stat-label">Brands Scaled</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTED BY -->
+<div id="trusted">
+  <span class="trusted-label">Trusted by</span>
+  <div class="trusted-logos">
+    <span class="trusted-name">Fieldwork</span>
+    <span class="trusted-name">Nuvelo</span>
+    <span class="trusted-name">Arcana</span>
+    <span class="trusted-name">Trestle</span>
+    <span class="trusted-name">Ouro</span>
+    <span class="trusted-name">Vanta</span>
+    <span class="trusted-name">Skovel</span>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div id="marquee">
+  <div class="marquee-track">
+    <div class="marquee-inner" aria-hidden="true">
+      <!-- set 1 -->
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Paid Acquisition</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Fieldwork SaaS</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">CRO &amp; Landing Pages</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Nuvelo Commerce</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Meta &amp; Google Ads</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Arcana Agency</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Creative Strategy</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Trestle Platforms</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Analytics &amp; Attribution</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Ouro Tech</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">LinkedIn Ads</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Skovel Analytics</span></div>
+      <!-- set 2 (duplicate for seamless loop) -->
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Paid Acquisition</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Fieldwork SaaS</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">CRO &amp; Landing Pages</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Nuvelo Commerce</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Meta &amp; Google Ads</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Arcana Agency</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Creative Strategy</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Trestle Platforms</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Analytics &amp; Attribution</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Ouro Tech</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">LinkedIn Ads</span></div>
+      <div class="marquee-item"><span class="marquee-dot"></span><span class="marquee-name">Skovel Analytics</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- NUMBERS -->
+<section id="numbers">
+  <div class="numbers-grid">
+    <div class="number-item">
+      <span class="number-big"><span>$40</span>M+</span>
+      <p class="number-desc">In paid media managed across Meta, Google, and LinkedIn</p>
+    </div>
+    <div class="number-item">
+      <span class="number-big"><span>3.8</span>×</span>
+      <p class="number-desc">Average blended ROAS delivered within the first 90 days</p>
+    </div>
+    <div class="number-item">
+      <span class="number-big"><span>60</span>+</span>
+      <p class="number-desc">B2B brands scaled from six to eight figures in revenue</p>
+    </div>
+    <div class="number-item">
+      <span class="number-big"><span>42</span>%</span>
+      <p class="number-desc">Average reduction in CAC vs. prior agency or in-house</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">What we do</div>
+      <h2 class="services-headline">Every lever that<br>moves your pipeline.</h2>
+    </div>
+    <p class="services-desc">We don't do templated retainers. We map your funnel, find the highest-leverage point, and build the infrastructure to exploit it at scale.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg></div>
+      <h3 class="service-title">Paid Acquisition</h3>
+      <p class="service-text">Meta, Google, LinkedIn — full-funnel campaigns built around your ICP and optimised for pipeline, not clicks.</p>
+      <div class="service-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+      <h3 class="service-title">Conversion Rate Optimisation</h3>
+      <p class="service-text">We audit landing pages, test copy, layout, and offers, then ship iterative improvements that compound over time.</p>
+      <div class="service-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <h3 class="service-title">Analytics &amp; Attribution</h3>
+      <p class="service-text">Clean GA4 setup, custom dashboards, and multi-touch attribution so you always know which spend is working.</p>
+      <div class="service-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div>
+      <h3 class="service-title">Retargeting &amp; Lifecycle</h3>
+      <p class="service-text">Pixel-precise retargeting and email/SMS lifecycle programs that convert warm audiences before they forget you.</p>
+      <div class="service-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+      <h3 class="service-title">Creative Strategy</h3>
+      <p class="service-text">Data-driven ad creative: hooks, statics, video, and UGC briefs designed to beat your control and drive intent.</p>
+      <div class="service-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <h3 class="service-title">Growth Advisory</h3>
+      <p class="service-text">Monthly strategy sessions with your team. We help you make the right channel bets before committing budget.</p>
+      <div class="service-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder">
+  <div class="section-label">Who's behind this</div>
+  <div class="founder-inner">
+    <div class="founder-sticky">
+      <div class="founder-img-wrap">
+        <span class="founder-initials">YN</span>
+        <span class="founder-img-hint">Add your photo here</span>
+      </div>
+      <div class="founder-meta">
+        <div class="founder-name-tag">
+          <div class="fn">Your Name</div>
+          <div class="ft">Founder &amp; Lead Strategist</div>
+        </div>
+        <a href="#" class="founder-social">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="founder-content">
+      <h2 class="founder-quote">
+        "Most agencies optimise for <em>activity.</em> We optimise for outcomes — and only outcomes."
+      </h2>
+      <p class="founder-body">I started Adscrew because I spent three years on the brand side watching agencies report vanity metrics while our pipeline stayed flat. The problem isn't talent — it's incentives. When agencies get paid for hours and impressions, that's what they chase.</p>
+      <p class="founder-body">We work with a handful of B2B companies at a time. That means your account gets a senior strategist, not a coordinator who just graduated. Every decision is tied to one number: your cost per qualified opportunity.</p>
+      <div class="founder-divider"></div>
+      <div class="founder-creds">
+        <div class="cred-item">
+          <div class="cred-val"><span>$40</span>M+</div>
+          <div class="cred-lbl">Managed in paid media</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-val"><span>7</span> yrs</div>
+          <div class="cred-lbl">In performance marketing</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-val"><span>3</span> exits</div>
+          <div class="cred-lbl">Brands scaled to acquisition</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-val">Top <span>1%</span></div>
+          <div class="cred-lbl">Meta &amp; Google certified</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="results-header">
+    <div>
+      <div class="section-label">Recent results</div>
+      <h2 class="results-headline">Numbers we're<br>proud to put our<br>name on.</h2>
+    </div>
+    <p style="font-size:15px;color:var(--text-muted);line-height:1.75;align-self:end;">These are typical outcomes within the first two quarters for clients who implement our recommendations fully.</p>
+  </div>
+  <div class="results-grid">
+    <div class="result-card">
+      <div class="result-card-header">
+        <span class="result-brand">Fieldwork SaaS</span>
+        <span class="result-industry">B2B SaaS</span>
+      </div>
+      <div class="result-body">
+        <div class="result-metric">
+          <div class="result-metric-label">Cost per Lead</div>
+          <div class="result-metric-row"><span class="result-before">$214</span><span class="result-after">$67</span><span class="result-delta">−69%</span></div>
+        </div>
+        <div class="result-metric">
+          <div class="result-metric-label">MQL Volume / mo</div>
+          <div class="result-metric-row"><span class="result-before">48</span><span class="result-after">193</span><span class="result-delta">+302%</span></div>
+        </div>
+        <div class="result-metric">
+          <div class="result-metric-label">Pipeline Generated</div>
+          <div class="result-metric-row"><span class="result-after">$1.2M</span><span class="result-delta">90 days</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="result-card">
+      <div class="result-card-header">
+        <span class="result-brand">Nuvelo Commerce</span>
+        <span class="result-industry">E-Commerce</span>
+      </div>
+      <div class="result-body">
+        <div class="result-metric">
+          <div class="result-metric-label">Blended ROAS</div>
+          <div class="result-metric-row"><span class="result-before">1.8×</span><span class="result-after">4.6×</span><span class="result-delta">+156%</span></div>
+        </div>
+        <div class="result-metric">
+          <div class="result-metric-label">Monthly Revenue</div>
+          <div class="result-metric-row"><span class="result-before">$84K</span><span class="result-after">$310K</span><span class="result-delta">+269%</span></div>
+        </div>
+        <div class="result-metric">
+          <div class="result-metric-label">CAC</div>
+          <div class="result-metric-row"><span class="result-before">$148</span><span class="result-after">$54</span><span class="result-delta">−64%</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="result-card">
+      <div class="result-card-header">
+        <span class="result-brand">Arcana Agency</span>
+        <span class="result-industry">Services</span>
+      </div>
+      <div class="result-body">
+        <div class="result-metric">
+          <div class="result-metric-label">Qualified Calls / mo</div>
+          <div class="result-metric-row"><span class="result-before">6</span><span class="result-after">44</span><span class="result-delta">+633%</span></div>
+        </div>
+        <div class="result-metric">
+          <div class="result-metric-label">Close Rate</div>
+          <div class="result-metric-row"><span class="result-before">18%</span><span class="result-after">34%</span><span class="result-delta">+89%</span></div>
+        </div>
+        <div class="result-metric">
+          <div class="result-metric-label">Revenue 12-mo</div>
+          <div class="result-metric-row"><span class="result-after">$2.4M</span><span class="result-delta">from $680K</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-label">What clients say</div>
+  <h2 class="testimonials-headline">Don't take our word for it.</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="testimonial-text">"We'd been burning $30K/month on ads with nothing to show. Within <strong>six weeks Adscrew cut our CPL by 58%</strong> and the pipeline was actually moving. First agency that cared about the same outcomes we did."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">MK</div>
+        <div><div class="author-name">Marcus Kim</div><div class="author-role">CEO, Fieldwork SaaS</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="testimonial-text">"The creative strategy alone was worth it. <strong>Our hook rate went from 1.2% to 6.8% in two months.</strong> When ads stop the scroll, everything downstream gets easier."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">SR</div>
+        <div><div class="author-name">Shreya Rattan</div><div class="author-role">Growth Lead, Nuvelo Commerce</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="testimonial-text">"Most agencies give you dashboards. Adscrew gives you decisions. <strong>We 3.5×'d revenue in a year.</strong> The attribution clarity alone changed how we allocate budget."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">JT</div>
+        <div><div class="author-name">James Thorn</div><div class="author-role">Founder, Arcana Agency</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="testimonial-text">"Five agencies in ten years. Adscrew is the first to <strong>push back on my ideas and explain why.</strong> That honesty is rare. We're now in month 14 with zero plans to leave."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">AT</div>
+        <div><div class="author-name">Ayesha Tariq</div><div class="author-role">CMO, Trestle Platforms</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="testimonial-text">"The onboarding audit alone identified <strong>$14K/month in wasted spend on day one.</strong> Paid for itself before the contract even started."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">NP</div>
+        <div><div class="author-name">Nikhil Patel</div><div class="author-role">VP Growth, Ouro Tech</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="testimonial-text">"They come with a strategy, execute fast, and bring us the signal we need. <strong>Feels like having a performance co-founder</strong> without the equity."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">LV</div>
+        <div><div class="author-name">Lena Voss</div><div class="author-role">CEO, Skovel Analytics</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-glow" aria-hidden="true"></div>
+  <div class="cta-eyebrow">Limited spots available</div>
+  <h2 class="cta-headline">Ready to stop guessing<br>where your money goes?</h2>
+  <p class="cta-sub">Book a free 30-minute audit. We'll review your campaigns and show exactly what's leaking — no pitch deck, no fluff.</p>
+  <div class="cta-actions">
+    <a href="#" class="btn-primary">Book a Free Audit →</a>
+    <a href="mailto:hello@adscrew.co" class="btn-secondary">hello@adscrew.co</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo-text">adscrew<span class="footer-logo-dot"></span></div>
+      <p class="footer-tagline">Performance marketing for B2B brands that need results, not reports.</p>
+      <a href="mailto:hello@adscrew.co" class="footer-email">hello@adscrew.co</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#">Paid Acquisition</a></li>
+        <li><a href="#">CRO</a></li>
+        <li><a href="#">Analytics</a></li>
+        <li><a href="#">Creative Strategy</a></li>
+        <li><a href="#">Growth Advisory</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Results</a></li>
+        <li><a href="#">Process</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect</div>
+      <ul class="footer-links">
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Twitter / X</a></li>
+        <li><a href="#">Book a Call</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Adscrew. All rights reserved.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
