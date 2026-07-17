@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Breakeven ROAS Calculator — Indian D2C</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAFAF7;
+    --ink:#14171F;
+    --ink-soft:#5B5F6B;
+    --line:#E3E1D9;
+    --card:#FFFFFF;
+    --teal:#0F6E5C;
+    --teal-soft:#E4EFEC;
+    --rust:#B4472E;
+    --rust-soft:#F5E7E2;
+    --amber:#B4841F;
+    --amber-soft:#F6EEDD;
+    --shadow: 0 1px 2px rgba(20,23,31,0.04), 0 8px 24px -12px rgba(20,23,31,0.12);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;padding:32px 20px 80px;}
+  .wrap{max-width:1180px;margin:0 auto;}
+  header{margin-bottom:28px;border-bottom:1px solid var(--line);padding-bottom:20px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:6px;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:32px;margin:0 0 4px;letter-spacing:-0.01em;}
+  .sub{color:var(--ink-soft);font-size:14.5px;max-width:520px;}
+  .badge{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);border:1px solid var(--line);border-radius:20px;padding:6px 14px;background:var(--card);}
+
+  .grid{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;align-items:start;}
+  @media (max-width:900px){.grid{grid-template-columns:1fr;}}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px 8px;box-shadow:var(--shadow);margin-bottom:18px;}
+  .card h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--ink);margin:0 0 2px;}
+  .card .hint{font-size:12.5px;color:var(--ink-soft);margin:0 0 16px;}
+
+  .row{display:grid;grid-template-columns:1fr 132px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line);}
+  .row:last-of-type{border-bottom:none;}
+  .row label{font-size:13.5px;color:var(--ink);line-height:1.35;}
+  .row .desc{display:block;font-size:11.5px;color:var(--ink-soft);margin-top:2px;font-weight:400;}
+  .inputwrap{position:relative;}
+  .inputwrap input, .inputwrap select{
+    width:100%;border:1px solid var(--line);background:var(--paper);border-radius:8px;
+    padding:8px 10px;font-family:'IBM Plex Mono',monospace;font-size:14px;text-align:right;color:var(--ink);
+  }
+  .inputwrap input:focus, .inputwrap select:focus{outline:2px solid var(--teal);outline-offset:1px;border-color:var(--teal);}
+  .inputwrap .unit{position:absolute;left:9px;top:8px;font-size:12px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;pointer-events:none;}
+  .inputwrap.has-prefix input{padding-left:20px;}
+
+  .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line);}
+  .toggle-row label{font-size:13.5px;}
+  .switch{position:relative;width:40px;height:22px;flex:none;}
+  .switch input{opacity:0;width:0;height:0;}
+  .slider{position:absolute;cursor:pointer;inset:0;background:#D8D5C9;border-radius:20px;transition:.15s;}
+  .slider:before{content:"";position:absolute;height:16px;width:16px;left:3px;top:3px;background:white;border-radius:50%;transition:.15s;}
+  input:checked + .slider{background:var(--teal);}
+  input:checked + .slider:before{transform:translateX(18px);}
+
+  /* Results panel */
+  .sticky{position:sticky;top:20px;}
+  .result-card{background:var(--ink);color:var(--paper);border-radius:14px;padding:26px 24px;box-shadow:var(--shadow);margin-bottom:18px;}
+  .result-card .label{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#B9BCC4;margin-bottom:6px;}
+  .result-card .big{font-family:'Fraunces',serif;font-size:52px;font-weight:600;line-height:1;color:#fff;}
+  .result-card .big span{font-size:22px;font-weight:500;color:#9FE0CE;margin-left:4px;}
+  .result-card .foot{font-size:12.5px;color:#9296A3;margin-top:8px;line-height:1.5;}
+
+  .result-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;}
+  .mini{background:#1E222D;border-radius:10px;padding:14px 16px;}
+  .mini .label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#9296A3;margin-bottom:4px;}
+  .mini .val{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:600;color:#fff;}
+  .mini .val.rust{color:#E79A85;}
+  .mini .val.teal{color:#8FE0C7;}
+
+  /* waterfall */
+  .wf-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:18px;}
+  .wf-card h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;font-family:'IBM Plex Mono',monospace;font-weight:600;margin:0 0 14px;}
+  .wf-bar{display:flex;width:100%;height:34px;border-radius:8px;overflow:hidden;border:1px solid var(--line);}
+  .wf-seg{height:100%;transition:width .25s ease;}
+  .wf-legend{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:14px;}
+  .wf-legend .item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;}
+  .wf-legend .dot{width:9px;height:9px;border-radius:2px;flex:none;}
+  .wf-legend .amt{color:var(--ink);font-weight:600;}
+
+  .reality{background:var(--teal-soft);border:1px solid #CFE4DE;border-radius:14px;padding:20px 22px;}
+  .reality h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;font-family:'IBM Plex Mono',monospace;font-weight:600;margin:0 0 14px;color:var(--teal);}
+  .reality .row{border-bottom:1px dashed #CFE4DE;}
+  .reality-out{margin-top:14px;padding-top:14px;border-top:1px solid #CFE4DE;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .reality-out .val{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:20px;}
+  .reality-out .label{font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;font-family:'IBM Plex Mono',monospace;}
+  .profit-pos{color:var(--teal);}
+  .profit-neg{color:var(--rust);}
+
+  .note{font-size:11.5px;color:var(--ink-soft);line-height:1.6;padding:14px 4px 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <div class="eyebrow">Unit economics · Indian D2C</div>
+      <h1>Breakeven ROAS Calculator</h1>
+      <div class="sub">Work out the minimum ROAS your ads need to hit before you lose money on a unit — and the ROAS you actually need to hit your margin target.</div>
+    </div>
+    <div class="badge">All figures in ₹, per order</div>
+  </header>
+
+  <div class="grid">
+    <!-- LEFT: INPUTS -->
+    <div>
+
+      <div class="card">
+        <h2>Pricing</h2>
+        <p class="hint">The price the customer actually pays at checkout.</p>
+        <div class="row">
+          <label>Listed price
+            <span class="desc">MRP / price shown on the product page, before any discount</span>
+          </label>
+          <div class="inputwrap has-prefix"><span class="unit">₹</span><input type="number" id="sp" value="999" oninput="compute()"></div>
+        </div>
+        <div class="row">
+          <label>Discount offered
+            <span class="desc">Coupon, sale, or bundle discount given at checkout</span>
+          </label>
+          <div class="inputwrap"><input type="number" id="discount" value="0" oninput="compute()"><span class="unit" style="left:auto;right:9px;">%</span></div>
+        </div>
+        <div class="row" style="border-bottom:1px dashed var(--line);">
+          <label>Effective selling price
+            <span class="desc">What the customer actually pays — used for every calculation below</span>
+          </label>
+          <div class="inputwrap" style="opacity:.75;"><input type="text" id="spEffectiveDisplay" value="" disabled style="text-align:right;"></div>
+        </div>
+        <div class="toggle-row">
+          <label>Price includes GST
+            <span class="desc" style="display:block;font-size:11.5px;color:var(--ink-soft);">Turn off if you price exclusive of tax</span>
+          </label>
+          <label class="switch"><input type="checkbox" id="gstOn" checked oninput="compute()"><span class="slider"></span></label>
+        </div>
+        <div class="row" id="gstRow">
+          <label>GST rate</label>
+          <div class="inputwrap"><input type="number" id="gst" value="18" oninput="compute()"><span class="unit" style="left:auto;right:9px;">%</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Product &amp; Packaging</h2>
+        <p class="hint">Direct cost of making and boxing one unit.</p>
+        <div class="row">
+          <label>COGS
+            <span class="desc">Raw material / manufacturing cost per unit</span>
+          </label>
+          <div class="inputwrap has-prefix"><span class="unit">₹</span><input type="number" id="cogs" value="220" oninput="compute()"></div>
+        </div>
+        <div class="row">
+          <label>Packaging
+            <span class="desc">Box, filler, insert, poly bag, labels</span>
+          </label>
+          <div class="inputwrap has-prefix"><span class="unit">₹</span><input type="number" id="pack" value="35" oninput="compute()"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Logistics &amp; RTO</h2>
+        <p class="hint">Shipping and returns — the line item that quietly kills Indian D2C margins.</p>
+        <div class="row">
+          <label>Forward shipping
+            <span class="desc">Courier cost to ship one order out</span>
+          </label>
+          <div class="inputwrap has-prefix"><span class="unit">₹</span><input type="number" id="fwd" value="65" oninput="compute()"></div>
+        </div>
+        <div class="row">
+          <label>RTO / return rate
+            <span class="desc">Share of orders that come back undelivered or returned</span>
+          </label>
+          <div class="inputwrap"><input type="number" id="rtoRate" value="12" oninput="compute()"><span class="unit" style="left:auto;right:9px;">%</span></div>
+        </div>
+        <div class="row">
+          <label>Cost per RTO
+            <span class="desc">Reverse shipping + re-packing + unsellable stock loss</span>
+          </label>
+          <div class="inputwrap has-prefix"><span class="unit">₹</span><input type="number" id="rtoCost" value="180" oninput="compute()"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Payments &amp; Platform</h2>
+        <p class="hint">Fees taken as a % of the order value.</p>
+        <div class="row">
+          <label>Payment gateway / COD fee
+            <span class="desc">Blended rate — weight by your COD vs prepaid split</span>
+          </label>
+          <div class="inputwrap"><input type="number" id="pgFee" value="2.5" oninput="compute()"><span class="unit" style="left:auto;right:9px;">%</span></div>
+        </div>
+        <div class="row">
+          <label>Marketplace commission
+            <span class="desc">Set 0 if selling only on your own site</span>
+          </label>
+          <div class="inputwrap"><input type="number" id="platform" value="0" oninput="compute()"><span class="unit" style="left:auto;right:9px;">%</span></div>
+        </div>
+        <div class="row">
+          <label>Other cost per order
+            <span class="desc">Pick-pack labour, CS, misc overhead</span>
+          </label>
+          <div class="inputwrap has-prefix"><span class="unit">₹</span><input type="number" id="other" value="15" oninput="compute()"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Target &amp; Fixed Costs</h2>
+        <p class="hint">Optional — sharpens the number beyond simple breakeven.</p>
+        <div class="row">
+          <label>Desired net profit margin
+            <span class="desc">% of selling price you want left after ad spend</span>
+          </label>
+          <div class="inputwrap"><input type="number" id="targetMargin" value="15" oninput="compute()"><span class="unit" style="left:auto;right:9px;">%</span></div>
+        </div>
+        <div class="row">
+          <label>Monthly fixed costs
+            <span class="desc">Salaries, rent, tools, software — non ad, non variable</span>
+          </label>
+          <div class="inputwrap has-prefix"><span class="unit">₹</span><input type="number" id="fixedCost" value="0" oninput="compute()"></div>
+        </div>
+        <div class="row">
+          <label>Expected monthly orders
+            <span class="desc">Used to spread fixed cost per order</span>
+          </label>
+          <div class="inputwrap"><input type="number" id="monthlyOrders" value="0" oninput="compute()"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: RESULTS -->
+    <div class="sticky">
+
+      <div class="result-card">
+        <div class="label">Breakeven ROAS</div>
+        <div class="big" id="breakevenRoas">—<span>x</span></div>
+        <div class="foot" id="breakevenFoot">Ad spend per order above this and you lose money on the unit.</div>
+
+        <div class="result-split">
+          <div class="mini">
+            <div class="label">Target ROAS</div>
+            <div class="val teal" id="targetRoas">—x</div>
+          </div>
+          <div class="mini">
+            <div class="label">Max CPA (breakeven)</div>
+            <div class="val" id="breakevenCPA">₹—</div>
+          </div>
+          <div class="mini">
+            <div class="label">Contribution margin</div>
+            <div class="val" id="cmVal">₹—</div>
+          </div>
+          <div class="mini">
+            <div class="label">CM %</div>
+            <div class="val" id="cmPct">—%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-card">
+        <h2>Where the selling price goes</h2>
+        <div class="wf-bar" id="wfBar"></div>
+        <div class="wf-legend" id="wfLegend"></div>
+      </div>
+
+      <div class="reality">
+        <h2>Reality check</h2>
+        <div class="row">
+          <label>ROAS you're actually running</label>
+          <div class="inputwrap"><input type="number" id="actualRoas" value="2.5" oninput="compute()"><span class="unit" style="left:auto;right:9px;">x</span></div>
+        </div>
+        <div class="reality-out">
+          <div>
+            <div class="label">Ad spend / order</div>
+            <div class="val" id="actualSpend">₹—</div>
+          </div>
+          <div>
+            <div class="label">Profit / order</div>
+            <div class="val" id="actualProfit">₹—</div>
+          </div>
+          <div>
+            <div class="label">Monthly profit</div>
+            <div class="val" id="monthlyProfit">₹—</div>
+          </div>
+          <div>
+            <div class="label">vs breakeven</div>
+            <div class="val" id="vsBreakeven">—</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="note">Assumptions: ROAS is calculated on gross selling price (order value), matching how Meta/Google Ads report it. GST, when included in price, is treated as pass-through and excluded from contribution margin. RTO cost is blended across all orders at your stated return rate. This is a planning tool, not accounting advice.</p>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function fmt(n){
+  if(!isFinite(n)) return '—';
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+function fmtX(n){
+  if(!isFinite(n) || n<=0) return '—';
+  return n.toFixed(2);
+}
+
+function compute(){
+  const listedPrice = parseFloat(document.getElementById('sp').value)||0;
+  const discount = (parseFloat(document.getElementById('discount').value)||0)/100;
+  const sp = listedPrice * (1-discount); // effective price paid — drives every calc below
+  document.getElementById('spEffectiveDisplay').value = '₹' + Math.round(sp).toLocaleString('en-IN');
+  const gstOn = document.getElementById('gstOn').checked;
+  document.getElementById('gstRow').style.display = gstOn ? 'grid' : 'none';
+  const gst = parseFloat(document.getElementById('gst').value)||0;
+  const cogs = parseFloat(document.getElementById('cogs').value)||0;
+  const pack = parseFloat(document.getElementById('pack').value)||0;
+  const fwd = parseFloat(document.getElementById('fwd').value)||0;
+  const rtoRate = (parseFloat(document.getElementById('rtoRate').value)||0)/100;
+  const rtoCost = parseFloat(document.getElementById('rtoCost').value)||0;
+  const pgFee = (parseFloat(document.getElementById('pgFee').value)||0)/100;
+  const platform = (parseFloat(document.getElementById('platform').value)||0)/100;
+  const other = parseFloat(document.getElementById('other').value)||0;
+  const targetMargin = (parseFloat(document.getElementById('targetMargin').value)||0)/100;
+  const fixedCost = parseFloat(document.getElementById('fixedCost').value)||0;
+  const monthlyOrders = parseFloat(document.getElementById('monthlyOrders').value)||0;
+
+  const netRevenue = gstOn ? sp/(1+gst/100) : sp;
+  const gstAmount = sp - netRevenue;
+  const rtoBlended = rtoRate * rtoCost;
+  const pgFeeAmt = pgFee * sp;
+  const platformAmt = platform * sp;
+
+  const totalCost = cogs + pack + fwd + rtoBlended + pgFeeAmt + platformAmt + other;
+  const cm = netRevenue - totalCost; // contribution margin in ₹, before ad spend
+  const cmPct = sp>0 ? (cm/sp)*100 : 0;
+
+  const breakevenRoas = cm>0 ? sp/cm : Infinity;
+  const targetProfitAmt = targetMargin * sp;
+  const targetDenom = cm - targetProfitAmt;
+  const targetRoas = targetDenom>0 ? sp/targetDenom : Infinity;
+
+  document.getElementById('breakevenRoas').innerHTML = fmtX(breakevenRoas) + '<span>x</span>';
+  document.getElementById('targetRoas').innerText = (targetDenom>0 ? fmtX(targetRoas)+'x' : 'not reachable');
+  document.getElementById('breakevenCPA').innerText = fmt(cm>0?cm:0);
+  document.getElementById('cmVal').innerText = fmt(cm);
+  document.getElementById('cmPct').innerText = cmPct.toFixed(1)+'%';
+
+  if(cm<=0){
+    document.getElementById('breakevenFoot').innerText = 'This unit is unprofitable before ads even run — costs already exceed net revenue.';
+  } else {
+    document.getElementById('breakevenFoot').innerText = 'Ad spend per order above ' + fmt(cm) + ' and you lose money on the unit.';
+  }
+
+  // fixed cost overlay
+  let trueBreakevenNote = '';
+  if(fixedCost>0 && monthlyOrders>0){
+    const fixedPerOrder = fixedCost/monthlyOrders;
+    const trueCM = cm - fixedPerOrder;
+    const trueRoas = trueCM>0 ? sp/trueCM : Infinity;
+    trueBreakevenNote = ' Including ' + fmt(fixedPerOrder) + '/order of fixed costs, true breakeven ROAS is ' + (trueCM>0?fmtX(trueRoas)+'x':'not reachable') + '.';
+  }
+  if(trueBreakevenNote){
+    document.getElementById('breakevenFoot').innerText += trueBreakevenNote;
+  }
+
+  // waterfall
+  const segs = [
+    {label:'COGS', val:cogs, color:'#B4472E'},
+    {label:'Packaging', val:pack, color:'#C97A5D'},
+    {label:'Forward shipping', val:fwd, color:'#D9A05B'},
+    {label:'RTO (blended)', val:rtoBlended, color:'#B4841F'},
+    {label:'Payment/COD fee', val:pgFeeAmt, color:'#8A9A5B'},
+  ];
+  if(platformAmt>0) segs.push({label:'Platform commission', val:platformAmt, color:'#6E8F87'});
+  if(other>0) segs.push({label:'Other', val:other, color:'#9C9788'});
+  if(gstOn && gstAmount>0) segs.push({label:'GST (pass-through)', val:gstAmount, color:'#D8D5C9'});
+  segs.push({label:'Available for ads + profit', val:Math.max(cm,0), color:'#0F6E5C'});
+
+  const bar = document.getElementById('wfBar');
+  const legend = document.getElementById('wfLegend');
+  bar.innerHTML = '';
+  legend.innerHTML = '';
+  segs.forEach(s=>{
+    const pct = sp>0 ? Math.max((s.val/sp)*100,0) : 0;
+    const seg = document.createElement('div');
+    seg.className='wf-seg';
+    seg.style.width = pct+'%';
+    seg.style.background = s.color;
+    bar.appendChild(seg);
+
+    const item = document.createElement('div');
+    item.className='item';
+    item.innerHTML = '<span class="dot" style="background:'+s.color+'"></span>' + s.label + ' <span class="amt">'+fmt(s.val)+'</span>';
+    legend.appendChild(item);
+  });
+
+  // reality check
+  const actualRoas = parseFloat(document.getElementById('actualRoas').value)||0;
+  if(actualRoas>0){
+    const spendPerOrder = sp/actualRoas;
+    const profitPerOrder = cm - spendPerOrder;
+    document.getElementById('actualSpend').innerText = fmt(spendPerOrder);
+    const pEl = document.getElementById('actualProfit');
+    pEl.innerText = fmt(profitPerOrder);
+    pEl.className = 'val ' + (profitPerOrder>=0?'profit-pos':'profit-neg');
+
+    const vsEl = document.getElementById('vsBreakeven');
+    if(breakevenRoas===Infinity){
+      vsEl.innerText = 'unprofitable';
+      vsEl.className='val profit-neg';
+    } else if(actualRoas >= breakevenRoas){
+      vsEl.innerText = 'above breakeven';
+      vsEl.className='val profit-pos';
+    } else {
+      vsEl.innerText = 'below breakeven';
+      vsEl.className='val profit-neg';
+    }
+
+    if(monthlyOrders>0){
+      let monthlyP = profitPerOrder*monthlyOrders;
+      if(fixedCost>0) monthlyP -= fixedCost;
+      const mEl = document.getElementById('monthlyProfit');
+      mEl.innerText = fmt(monthlyP);
+      mEl.className = 'val ' + (monthlyP>=0?'profit-pos':'profit-neg');
+    } else {
+      document.getElementById('monthlyProfit').innerText = 'add order volume';
+    }
+  }
+}
+
+compute();
+</script>
+</body>
+</html>
